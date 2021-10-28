@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report name" pageWidth="600" pageHeight="600" columnWidth="560" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="ls_codigo" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT EMPLEADOS.APELLIDO, EMPLEADOS.NOMBRE, EMPLEADOS.DNI, EMPLEADOS.FECHANAC, EMPLEADOS.DIRECCION, EMPLEADOS.TELEFONO,
+       LABORES.CARGO,
+	   PERMISOS.FECHA_PERMISO, PERMISOS.TIEMPO, PERMISOS.DESCRIPCION,
+	   ASISTENCIA.FECHA, ASISTENCIA.HORA, ASISTENCIA.MARCACION
+FROM EMPLEADOS,LABORES,PERMISOS,ASISTENCIA
+WHERE EMPLEADOS.DNI=LABORES.DNI AND
+      EMPLEADOS.DNI=PERMISOS.DNI AND
+      EMPLEADOS.DNI=ASISTENCIA.DNI AND
+	EMPLEADOS.DNI=$P{ls_codigo} ;]]>
+	</queryString>
+	<field name="APELLIDO" class="java.lang.String"/>
+	<field name="NOMBRE" class="java.lang.String"/>
+	<field name="DNI" class="java.lang.String"/>
+	<field name="FECHANAC" class="java.sql.Date"/>
+	<field name="DIRECCION" class="java.lang.String"/>
+	<field name="TELEFONO" class="java.lang.String"/>
+	<field name="CARGO" class="java.lang.String"/>
+	<field name="FECHA_PERMISO" class="java.sql.Date"/>
+	<field name="TIEMPO" class="java.lang.String"/>
+	<field name="DESCRIPCION" class="java.lang.String"/>
+	<field name="FECHA" class="java.sql.Date"/>
+	<field name="HORA" class="java.sql.Time"/>
+	<field name="MARCACION" class="java.lang.String"/>
+	<variable name="FECHA_1" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[$F{FECHA}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="198" y="19" width="300" height="42" forecolor="#FF0099" backcolor="#FF0099"/>
+				<textElement>
+					<font size="24"/>
+				</textElement>
+				<text><![CDATA[REPORTE DE EMPLEADO]]></text>
+			</staticText>
+			<image>
+				<reportElement x="28" y="0" width="149" height="79"/>
+				<imageExpression class="java.lang.String"><![CDATA["C:\\Users\\Leila\\Desktop\\POO\\POO-IMAGENS\\2.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="101" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="28" y="38" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[NOMBRE:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="38" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{NOMBRE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="28" y="67" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[APELLIDO:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="107" y="67" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{APELLIDO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="38" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[DNI:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="277" y="38" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DNI}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="67" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[TELEFONO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="277" y="67" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TELEFONO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="371" y="38" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[DIRECCION]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="38" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DIRECCION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="371" y="67" width="79" height="20"/>
+				<textElement/>
+				<text><![CDATA[CARGO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="450" y="67" width="79" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{CARGO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="5" width="559" height="25" forecolor="#003333" backcolor="#FFCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[DATOS DEL EMPLEADO]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="99" width="559" height="1"/>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="559" height="1"/>
+			</line>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="96" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="60" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[TIEMPO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="308" y="34" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[DESCRIPCION]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="34" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[FECHA_PERMISO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="4" width="559" height="22" forecolor="#003333" backcolor="#FFCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[PERMISO]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="34" width="111" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FECHA_PERMISO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="150" y="60" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{TIEMPO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="60" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{DESCRIPCION}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="100" splitType="Stretch">
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[FECHA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="41" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{FECHA}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="308" y="41" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[HORA:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="408" y="41" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.sql.Time"><![CDATA[$F{HORA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="203" y="76" width="205" height="20"/>
+				<textElement/>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{MARCACION}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="103" y="76" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[MARCACIÓN:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Opaque" x="1" y="7" width="559" height="30" forecolor="#003333" backcolor="#FFCCCC"/>
+				<textElement textAlignment="Center">
+					<font size="16"/>
+				</textElement>
+				<text><![CDATA[MARCACION DE ASISTENCIA]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="0" width="559" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="28" splitType="Stretch">
+			<line>
+				<reportElement x="1" y="0" width="559" height="1"/>
+			</line>
+		</band>
+	</columnFooter>
+	<summary>
+		<band height="19" splitType="Stretch"/>
+	</summary>
+</jasperReport>
